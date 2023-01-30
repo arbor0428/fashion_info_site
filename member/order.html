@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--lato-->	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+				
+		<!--css-->	
+		<link rel="stylesheet" type="text/css" href="../css/reset.css?v=2">
+		<link rel="stylesheet" type="text/css" href="../css/sub.css?v=3">
+		<link rel="stylesheet" type="text/css" href="../css/button.css?v=5">
+		<link rel="stylesheet" type="text/css" href="../css/new_board.css?v=4">
+		<link rel="stylesheet" type="text/css" href="../css/style.css?v=8">
+		<link rel="stylesheet" type="text/css" href="../css/responsive.css?v=6">
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+		<script src="./js/jquery.bannerSlider-1.0.js"></script>
+		
+
+
+		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+		<link rel="stylesheet" href="./js/jquery.bxslider.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+		<!-- aos animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+		<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+		<!-- font awesome -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+
+		<!-- slick 불러오기 -->
+		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+
+
+		<title>스타일세븐 | 오직 나만을 위한 스타일링서비스</title>
+
+	</head>
+	<body>
+
+		<header>
+			<div class="h_center p_r clearfix">
+				<nav class="p_r">
+					<ul class="pc_nav p_r">
+						<li><a href="/sub01/sub01.php" title="">서비스소개</a></li>
+						<li><a href="/sub02/sub01.php" title="">자주하는질문</a></li>
+						<li><a href="/sub03/sub01.php" title="">고객리뷰</a></li>
+						<li><a href="/sub04/sub01.php" title="">제휴문의</a></li>
+					</ul>
+				</nav>
+		
+				<script>
+					//hearder nav 효과
+		
+					var nav = $('nav');
+					var line = $('<div />').addClass('line');
+		
+					line.appendTo(nav);
+		
+					var active = nav.find('.active');
+					var pos = 0;
+					var wid = 0;
+		
+					if(active.length) {
+						pos = active.position().left;
+						wid = active.width();
+						line.css({
+							left: pos,
+							width: wid
+						});
+					}
+		
+					nav.find('ul li a').mouseover(function(e) {
+					  //e.preventDefault();
+					if(!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
+						
+						nav.addClass('animate');
+		
+						var _this = $(this);
+		
+						nav.find('ul li').removeClass('active');
+		
+						var position = _this.parent().position();
+						var width = _this.parent().width();
+		
+					if(position.left >= pos) {
+						line.animate({
+							width: ((position.left - pos) + width)
+						}, 300, function() {
+							line.animate({
+							width: width,
+							left: position.left
+						}, 150, function() {
+							nav.removeClass('animate');
+						});
+						_this.parent().addClass('active');
+					});
+					} else {
+						line.animate({
+							left: position.left,
+							width: ((pos - position.left) + wid)
+						}, 300, function() {
+							line.animate({
+							width: width
+						}, 150, function() {
+							nav.removeClass('animate');
+						});
+						_this.parent().addClass('active');
+						});
+					}
+		
+					pos = position.left;
+					wid = width;
+					}
+		
+					});
+		
+				</script>
+		
+				<h1 class="logo"><a href="" title=""><img src=".../images/logo_blk.png" alt="logo_img"></a></h1>
+		
+				<a href="/styleQuiz.php" id="top_quizBtn">스타일퀴즈 시작</a>
+				<div class="fr clearfix">
+					<div class="user_wrap">
+						<div class="user_profile"><a href="javascript://" title=""><img src=".../images/user_icon.png" alt="user"></a></div>
+						<div class="tan_img" style="position:absolute; right:-33px; width: 111px; height: 15px; background:url(.../images/user_arrow.png) no-repeat center top; z-index:5;"></div>
+						<div class="user_menu">
+							<div class="u_m_wrap">
+								<a class="dp_b txt_c f14" href="/member/login.php" title="">로그인</a>
+								<!--<a class="dp_b txt_c f14" href="/member/join1.php" title="회원가입">회원가입</a>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<script>
+					//유저메뉴 
+
+					$(".user_wrap").on("mouseenter",function(event){
+
+						event.preventDefault();
+						$(".user_menu").stop().fadeIn(100);
+						$(".tan_img").stop().fadeIn(100);
+
+					});
+
+					$(".user_wrap").on("mouseleave",function(event){
+
+						event.preventDefault();
+						$(".user_menu").stop().fadeOut(100);
+						$(".tan_img").stop().fadeOut(100);
+
+					});
+				</script>
+		
+			</div>
+		</header>
+		
+		<div class="m_header">
+			<div class="m_h_center">		
+				<a href="/" class="logo"><img src=".../images/logo_blk.png" alt="logo_img"></a>
+				<button type="button" id="btnFullMenu" class="m-btn">
+					메인메뉴 열기
+					<span class="bar_top"></span>
+					<span class="bar_mid"></span>
+					<span class="bar_bot"></span>
+				</button>
+			</div>
+			<div class="m_menu_wrap">
+				<ul class="m_gnb">
+					<li><a class="dp_b f42 wt" href="/sub01/sub01.php" title="">서비스소개</a></li>
+					<li><a class="dp_b f42 wt" href="/sub02/sub01.php" title="">자주하는질문</a></li>
+					<li><a class="dp_b f42 wt" href="/sub03/sub01.php" title="">고객리뷰</a></li>
+					<li><a class="dp_b f42 wt" href="/sub04/sub01.php" title="">제휴문의</a></li>
+				</ul>
+		
+				<ul class="m_user_wrap">
+					<li><a class="dp_b f22 wt" href="/member/login.php">로그인</a></li>
+					<!--<li><a class="dp_b f22 wt" href="/member/join1.php">회원가입</a></li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<script>
+		
+			$(document).ready(function(){
+		
+				AOS.init();
+		
+				//aos 반응형 효과 다르게 반영
+				function AOS_MOBILE() {
+					if (matchMedia("screen and (max-width: 768px)").matches) {
+		
+						$('.sc02_lst > div').attr('data-aos-delay', '0');
+						$('.sc04_lst .lst_s').attr('data-aos-delay', '0');
+						$('.sc04_lst .lst_s').attr('data-aos','');
+			
+						$('.sc02_lst > div.fr').attr('data-aos-delay','0');
+						$('.sc06_cir').attr('data-aos-delay', '200');
+						$('.arrow_wrap').attr('data-aos-delay', '0');
+			
+					}
+				} // 768px 이하일 때 
+				AOS_MOBILE();
+		
+				$(window).on("scroll",function(){
+		
+					let scTop = $(this).scrollTop();
+					let wid = $(window).width(); 
+		
+					if(scTop > 90 && wid < 1024) {
+		
+						$(".fixed-bnr").fadeIn();
+		
+					}
+		
+					else {
+		
+						$(".fixed-bnr").fadeOut();
+		
+					}
+				});
+
+				var flag = true;
+				$(".m-btn").click(function(event){
+	
+					event.preventDefault();
+	
+					if(flag){
+						$(".m_header").addClass("openFull");
+						flag= false;
+						$(".m_menu_wrap").slideDown();
+					} else {
+						$(".m_header").removeClass("openFull");
+						flag= true;
+						$(".m_menu_wrap").slideUp();
+					}
+				});
+		
+				$("#top_quizBtn").hide();
+					$(window).scroll(function(e){
+						e.preventDefault();
+						if ($(window).scrollTop() > 90) {
+		
+							$("#top_quizBtn").fadeIn();
+						} else {
+							$("#top_quizBtn").fadeOut();
+						}
+					});
+						
+				});
+		
+		</script>
+
+
+
+		<div class="content_box">
+			<div class="inr">
+				<h2 style="margin-bottom:50px;">Order</h2>
+				<div class="cart_list">
+					<p class="order_nm">주문번호 12345678</p>
+					<div class="row_tit">
+						<div class="col">-</div>
+						<div class="col">상품/상세정보</div>
+						<div class="col">주문금액</div>
+						<div class="col">상태</div>
+					</div>
+
+
+					<div class="row_con">
+						<div class="col"><input type="checkbox" name="" value="" class="chkList" checked></div>
+						<div class="col">
+							<img src="/upfile/<?=$prodImg?>">
+							<div class="text_bx">
+								<p>타이틀입니다</p>
+								<p>메모입니다. 메모입니다. 메모입니다. 메모입니다. 메모입니다.</p>
+							</div>
+						</div>
+						<div class="col line100">80,000 원</div>
+						<div class="col line100">대기</div>
+					</div>
+
+				</div>
+
+				<input type='hidden' name='prodList' value=''>
+
+
+				<div id="order_way">
+					<p class="order_way_tit">결제방식</p>
+					<div class="pay_wrap">
+						<div class="pay_way_list clearfix">
+							<div class="pay_way">
+								<input type="checkbox" name="payMode" id="card" value="card" class="radio" onclick="setChkBox('payMode',0);">
+								<label for="card">신용카드</label>
+							</div>
+							<div class="pay_way">
+								<input type="checkbox" name="payMode" id="acc" value="acc" class="radio" onclick="setChkBox('payMode',1);">
+								<label for="acc">계좌이체</label>
+							</div>
+							<div class="pay_way">
+								<input type="checkbox" name="payMode" id="vacc" value="vacc" class="radio" onclick="setChkBox('payMode',2);">
+								<label for="vacc">가상계좌</label>
+							</div>
+						</div>
+						<p class="red_01">※ 반품하실 제품은 반품신청을 꼭 진행해주세요!</p>
+					</div>
+
+
+					<div class="order_result_wrap">
+						<ul class="price_detail">
+							<li>
+								<div>총 상품 가격</div>
+								<div>80,000</div>
+							</li>
+							<li>
+								<div class="discount_detail">
+									<p>즉시 할인</p>
+									<p>-스타일링비 차감 할인(5만원 이상 구매)</p>
+								</div>
+								<div>-5,000</div>
+							</li>
+							<li>
+								<div>포인트</div>
+								<div class="point_detail">
+									<p class="p_d_first"><input type='text' name='usePoint' id='usePoint' value='0' class='numberOnly' style='text-align:right;border-bottom:1px solid #ddd;width:100px;padding-right:10px;'><span style="font-weight:600;">P</span></p>
+									<p class="p_d_second">사용 가능한 포인트 : 400 p</p>
+								</div>
+							</li>
+							<li>
+								<div>보유쿠폰</div>
+								<div>
+									<select name='coupon' id='coupon'>				
+										<option value=''>쿠폰선택</option>
+
+										<option value=''>쿠폰없음</option>
+									</select>
+								</div>
+							</li>
+							<li>
+								<div>총 결제 금액</div>
+								<div><span id='payAmtTxt'>75,000</span>원</div>
+							</li>
+						</ul>
+						<div class="button_area txt_c m66">
+							<a href="javascript:formChk();" class="bts">결제하기</a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
+		<script>
+		$(".radio").on("click",function(){
+			$(".order_result_wrap").fadeIn();
+		});
+		</script>
+
+
+		<section id="sec06">
+			<div class="s_center">
+				<h4 class="f42 txt_c fam_one_tit normal">여러분의 스타일을 제안해드립니다.</h4>
+				<div class="sc06_cir_wrap clearfix">
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="east-in-out" data-aos-duration="600">
+						<div class="sc06_txt_bx">
+							<img src=".../images/icon01.png" alt="icon">
+							<p class="cir_tit fam_lato blu_01 f18">STYLE QUIZ</p>
+							<p class="cir_det">스타일퀴즈를 진행해주세요<br>
+								여러분의 스타일을<br>
+								제안해드립니다.
+							</p>
+						</div>
+					</div>
+					<div class="arrow_wrap fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="300"><img class="dp_b" src=".../images/thin_arr.png"></div>
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="350">
+						<div class="sc06_txt_bx">
+							<img src=".../images/icon02.png" alt="icon">
+							<p class="cir_tit fam_one_tit blu_01 f18">회원가입 및 결제</p>
+							<p class="cir_det">회원가입 및 스타일링비<br>
+								선결제를 진행해주세요.
+							</p>
+						</div>
+					</div>
+					<div class="arrow_wrap fl arrow_respon" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="400"><img class="dp_b" src=".../images/thin_arr.png"></div>
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="450">
+						<div class="sc06_txt_bx">
+							<img src=".../images/icon03.png" alt="icon">
+							<p class="cir_tit fam_one_tit blu_01 f18">상품발송</p>
+							<p class="cir_det">7~8일후<br>
+								상품을 발송해드립니다.
+							</p>
+						</div>
+					</div>
+					<div class="arrow_wrap fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="500"><img class="dp_b" src=".../images/thin_arr.png"></div>
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="550">
+						<div class="sc06_txt_bx">
+							<img src=".../images/icon04.png" alt="icon">
+							<p class="cir_tit fam_one_tit blu_01 f18">구매진행 및 반품</p>
+							<p class="cir_det">마이페이지에서 구매진행해주시고,<br>
+								마음에 들지 않는 옷은<br>
+								반품해주세요.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="f_center">
+				<div class="f_top clearfix">
+					<ul class="f_nav clearfix">
+						<li class="fam_one_tit">
+							Style 7
+							<ul class="f_nav_depth2">
+								<li class="f14"><a href="/sub01/sub01.php">서비스 소개</a></li>
+							</ul>
+						</li>
+						<li class="fam_one_tit">
+							고객 지원
+							<ul class="f_nav_depth2">
+								<li class="f14"><a href="/sub02/sub01.php">자주하는 질문</a></li>
+								<li class="f14"><a href="/sub03/sub01.php">고객 리뷰</a></li>
+							</ul>
+						</li>
+						<li class="fam_one_tit">
+							제휴 문의
+							<ul class="f_nav_depth2">
+								<li class="f14"><a href="/sub04/sub01.php">제휴 문의</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="f_sns clearfix">
+						<li><a href="https://www.instagram.com/style7_styling_service/" target="_blank"><img src=".../images/sns_instagram.png"></a></li>
+						<!--<li><a href="#"><img src=".../images/sns_facebook.png"></a></li>-->
+						<li><a href="https://www.youtube.com/channel/UC4QXqPYLeMwCqJyxMECpjMw" target="_blank"><img src=".../images/sns_youtube.png"></a></li>
+					</ul>
+				</div>
+				<div class="f_bot">
+					<ul class="use_info">
+						<li class="f14"><a href="/member/policy01.php">개인정보처리방침</a></li>	
+						<li class="f14"><a href="/member/use01.php">이용약관</a></li>			
+					</ul>
+					<div class="com_info_wrap">
+						<span>(주)콘텐츠뱅크</span>
+						<span>대표: 장경임</span>
+						<span>사업자등록번호: 207-81-58418</span>
+						<span>통신판매번호: 2021-서울성동-02687호</span>
+						<br>
+						<span class="f_span_05">서울시 성동구 아차산로7길 15-1,<br>3층 3011호 (성수동2가, 효정빌딩)</span>
+						<span>E-mail: biz@contentsbank.co.kr</span>
+					</div>
+					<p class="copyright f14">COPYRIGHT(C) 2021 콘텐츠뱅크 ALL RIGHT RESERVED. <a href="https://i-web.kr/" target="_blank" style="opacity:0.5;">&nbsp; Design By. i-web</a></p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

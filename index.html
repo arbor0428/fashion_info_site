@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--lato-->	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+				
+		<!--css-->	
+		<link rel="stylesheet" type="text/css" href="./css/reset.css?v=2">
+		<link rel="stylesheet" type="text/css" href="./css/sub.css?v=3">
+		<link rel="stylesheet" type="text/css" href="/css/button.css?v=5">
+		<link rel="stylesheet" type="text/css" href="./css/new_board.css?v=4">
+		<link rel="stylesheet" type="text/css" href="./css/style.css?v=8">
+		<link rel="stylesheet" type="text/css" href="./css/responsive.css?v=6">
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+		<script src="./js/jquery.bannerSlider-1.0.js"></script>
+		
+
+
+		<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+		<link rel="stylesheet" href="./js/jquery.bxslider.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+		<!-- aos animation -->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+		<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+		<!-- font awesome -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+
+		<!-- slick 불러오기 -->
+		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+
+
+		<title>스타일세븐 | 오직 나만을 위한 스타일링서비스</title>
+
+	</head>
+	<body>
+
+		<header>
+			<div class="h_center p_r clearfix">
+				<nav class="p_r">
+					<ul class="pc_nav p_r">
+						<li><a href="/sub01/sub01.php" title="">서비스소개</a></li>
+						<li><a href="/sub02/sub01.php" title="">자주하는질문</a></li>
+						<li><a href="/sub03/sub01.php" title="">고객리뷰</a></li>
+						<li><a href="/sub04/sub01.php" title="">제휴문의</a></li>
+					</ul>
+				</nav>
+		
+				<script>
+					//hearder nav 효과
+		
+					var nav = $('nav');
+					var line = $('<div />').addClass('line');
+		
+					line.appendTo(nav);
+		
+					var active = nav.find('.active');
+					var pos = 0;
+					var wid = 0;
+		
+					if(active.length) {
+						pos = active.position().left;
+						wid = active.width();
+						line.css({
+							left: pos,
+							width: wid
+						});
+					}
+		
+					nav.find('ul li a').mouseover(function(e) {
+					  //e.preventDefault();
+					if(!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
+						
+						nav.addClass('animate');
+		
+						var _this = $(this);
+		
+						nav.find('ul li').removeClass('active');
+		
+						var position = _this.parent().position();
+						var width = _this.parent().width();
+		
+					if(position.left >= pos) {
+						line.animate({
+							width: ((position.left - pos) + width)
+						}, 300, function() {
+							line.animate({
+							width: width,
+							left: position.left
+						}, 150, function() {
+							nav.removeClass('animate');
+						});
+						_this.parent().addClass('active');
+					});
+					} else {
+						line.animate({
+							left: position.left,
+							width: ((pos - position.left) + wid)
+						}, 300, function() {
+							line.animate({
+							width: width
+						}, 150, function() {
+							nav.removeClass('animate');
+						});
+						_this.parent().addClass('active');
+						});
+					}
+		
+					pos = position.left;
+					wid = width;
+					}
+		
+					});
+		
+				</script>
+		
+				<h1 class="logo"><a href="" title=""><img src="./images/logo_blk.png" alt="logo_img"></a></h1>
+		
+				<a href="/styleQuiz.php" id="top_quizBtn">스타일퀴즈 시작</a>
+				<div class="fr clearfix">
+					<div class="user_wrap">
+						<div class="user_profile"><a href="javascript://" title=""><img src="./images/user_icon.png" alt="user"></a></div>
+						<div class="tan_img" style="position:absolute; right:-33px; width: 111px; height: 15px; background:url(./images/user_arrow.png) no-repeat center top; z-index:5;"></div>
+						<div class="user_menu">
+							<div class="u_m_wrap">
+								<a class="dp_b txt_c f14" href="/member/login.php" title="">로그인</a>
+								<!--<a class="dp_b txt_c f14" href="/member/join1.php" title="회원가입">회원가입</a>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<script>
+					//유저메뉴 
+
+					$(".user_wrap").on("mouseenter",function(event){
+
+						event.preventDefault();
+						$(".user_menu").stop().fadeIn(100);
+						$(".tan_img").stop().fadeIn(100);
+
+					});
+
+					$(".user_wrap").on("mouseleave",function(event){
+
+						event.preventDefault();
+						$(".user_menu").stop().fadeOut(100);
+						$(".tan_img").stop().fadeOut(100);
+
+					});
+				</script>
+		
+			</div>
+		</header>
+		
+		<div class="m_header">
+			<div class="m_h_center">		
+				<a href="/" class="logo"><img src="./images/logo_blk.png" alt="logo_img"></a>
+				<button type="button" id="btnFullMenu" class="m-btn">
+					메인메뉴 열기
+					<span class="bar_top"></span>
+					<span class="bar_mid"></span>
+					<span class="bar_bot"></span>
+				</button>
+			</div>
+			<div class="m_menu_wrap">
+				<ul class="m_gnb">
+					<li><a class="dp_b f42 wt" href="/sub01/sub01.php" title="">서비스소개</a></li>
+					<li><a class="dp_b f42 wt" href="/sub02/sub01.php" title="">자주하는질문</a></li>
+					<li><a class="dp_b f42 wt" href="/sub03/sub01.php" title="">고객리뷰</a></li>
+					<li><a class="dp_b f42 wt" href="/sub04/sub01.php" title="">제휴문의</a></li>
+				</ul>
+		
+				<ul class="m_user_wrap">
+					<li><a class="dp_b f22 wt" href="/member/login.php">로그인</a></li>
+					<!--<li><a class="dp_b f22 wt" href="/member/join1.php">회원가입</a></li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<script>
+		
+			$(document).ready(function(){
+		
+				AOS.init();
+		
+				//aos 반응형 효과 다르게 반영
+				function AOS_MOBILE() {
+					if (matchMedia("screen and (max-width: 768px)").matches) {
+		
+						$('.sc02_lst > div').attr('data-aos-delay', '0');
+						$('.sc04_lst .lst_s').attr('data-aos-delay', '0');
+						$('.sc04_lst .lst_s').attr('data-aos','');
+			
+						$('.sc02_lst > div.fr').attr('data-aos-delay','0');
+						$('.sc06_cir').attr('data-aos-delay', '200');
+						$('.arrow_wrap').attr('data-aos-delay', '0');
+			
+					}
+				} // 768px 이하일 때 
+				AOS_MOBILE();
+		
+				$(window).on("scroll",function(){
+		
+					let scTop = $(this).scrollTop();
+					let wid = $(window).width(); 
+		
+					if(scTop > 90 && wid < 1024) {
+		
+						$(".fixed-bnr").fadeIn();
+		
+					}
+		
+					else {
+		
+						$(".fixed-bnr").fadeOut();
+		
+					}
+				});
+
+				var flag = true;
+				$(".m-btn").click(function(event){
+	
+					event.preventDefault();
+	
+					if(flag){
+						$(".m_header").addClass("openFull");
+						flag= false;
+						$(".m_menu_wrap").slideDown();
+					} else {
+						$(".m_header").removeClass("openFull");
+						flag= true;
+						$(".m_menu_wrap").slideUp();
+					}
+				});
+		
+				$("#top_quizBtn").hide();
+					$(window).scroll(function(e){
+						e.preventDefault();
+						if ($(window).scrollTop() > 90) {
+		
+							$("#top_quizBtn").fadeIn();
+						} else {
+							$("#top_quizBtn").fadeOut();
+						}
+					});
+						
+				});
+		
+		</script>
+
+		<div class="fixed-bnr">
+			<a class="wt f32 dp_b" href="./styleQuiz.php" title="">스타일퀴즈 시작</a>
+		</div>
+
+		<div id="visual">
+			<img  class="v_bg_logo" src="./images/logo_round2.png" alt="v_bg">
+			<div class="v_txt_box">
+				<div class="tit_hidden">
+					<h3 class="f36 fam_one_tit">옷, 더는 고민하지 마세요!</h3>
+				</div>
+				<div class="tit02_hidden">
+					<p class="v_h3_detail f52 fam_one_tit">오직 나만을 위한 스타일링 서비스</p>
+				</div>
+				<div class="detail_hidden">
+					<p class="v_btn_detail f22">여러분의 스타일을 분석해드립니다! Click!</p>
+				</div>
+				<div class="v_start_btn"><a class="wt txt_c dp_b f20" href="./styleQuiz.php" title="">스타일퀴즈 시작</a></div>
+			</div>
+			<div class="v_img_wrap">
+				<div class="v_clothes_wrap" data-aos="fade-left" data-aos-easing="ease-in-out-back" data-aos-duration="1000" data-aos-delay="1500"><img class="v_clothes" src="./images/visual_element01.png" alt="v_bg"></div>
+				<div class="v_person_wrap"><img class="v_person" src="./images/visual_element02.png" alt="v_bg"></div>
+			</div>
+		</div>
+
+		<section id="sec01">
+			<div class="s_center clearfix">
+				<div class="sc01_txt_box">
+					<div class="sc01_tit_line"></div>
+					<div class="sc01_first">
+						<h5 class="fam_one_tit f36 normal">고민은 이제 그만,</h5>
+						<p class="sc01_tit fam_one_tit f42">내게 딱 맞는 스타일링 서비스</p>
+					</div>
+					<p class="sc01_tit_detail f20">간단한 스타일퀴즈 진행 후 전문 스타일리스트가<br>
+						당신의 스타일을 분석하여 스타일링을 제안해드립니다.</p>
+					<img src="./images/logo_gry.png" alt="logo">
+				</div>
+			</div>
+			<div class="sc01_right_bx" data-aos="fade-left" data-aos-easing="east-in-out" data-aos-duration="800">
+				<div class="sc01_slick_box clearfix">
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail01.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail02.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail03.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail04.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail05.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail06.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail07.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail08.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail09.jpg">
+					</div>
+					<div class="sc01_bx_wrap">
+						<img src="./images/codi_thumbnail10.jpg">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script>
+			$(function(){
+					// 비주얼 글자 올라오기 효과
+					$(window).on("load",function(){
+
+						$("html,body").stop().animate({"scrollTop":0},10);
+
+						//$(".v_txt_box h3").stop().animate({"bottom":0},500,'linear',function(){
+							//$(".v_txt_box .v_h3_detail ").stop().animate({"bottom":0},500,'linear',function(){
+								//$(".v_txt_box .v_btn_detail").stop().animate({"bottom":0},400,'linear');
+								//$(".v_txt_box .v_start_btn a").stop().animate({"bottom":0},500,'linear');
+							//});
+
+						//});
+
+						gsap.fromTo(".v_txt_box h3",{transform: "translateY(100%)",autoAlpha: 0}, {transform: "translateY(0%)",autoAlpha: 1,force3D: true,ease: Circ.easeOut,delay: 0.3});
+						gsap.fromTo(".v_txt_box .v_h3_detail",{transform: "translateY(100%)",autoAlpha: 0}, {transform: "translateY(0%)",autoAlpha: 1,force3D: true,ease: Circ.easeOut,delay: 0.7});
+						gsap.fromTo(".v_txt_box .v_btn_detail",{transform: "translateY(100%)",autoAlpha: 0}, {transform: "translateY(0%)",autoAlpha: 1,force3D: true,ease: Circ.easeOut,delay: 1});
+						gsap.fromTo(".v_txt_box .v_start_btn a",{transform: "translateY(100%)",autoAlpha: 0}, {transform: "translateY(0%)",autoAlpha: 1,force3D: true,ease: Circ.easeOut,delay: 1.3});
+
+					});
+
+					//section01 slick
+
+					$('.sc01_slick_box').slick({
+					dots: false,
+					arrows:true,
+					infinite: true,
+					speed: 1000,
+					autoplay: true,
+					autoplaySpeed : 1000,
+					slidesToShow: 2,
+					variableWidth:true,
+					adaptiveHeight : !0,
+
+					responsive: [ 
+						{ breakpoint: 1280, // 화면의 넓이가 1280px 이상일 때 
+							settings: { 
+							slidesToShow: 3, 
+							slidesToScroll: 1,
+							variableWidth:false,
+					adaptiveHeight: false,
+						}}, 
+						{ breakpoint: 800, // 화면의 넓이가 768px 이상일 때 
+							settings: { 
+							slidesToShow: 2, 
+							slidesToScroll: 1,
+							variableWidth:false,
+					adaptiveHeight: false,
+						}}, 
+						{ breakpoint: 600, // 화면의 넓이가 380px 이상일 때 
+							settings: { 
+							slidesToShow: 1, 
+							slidesToScroll: 1,
+							variableWidth:false,
+							adaptiveHeight: false,
+						} 
+						} 
+					] 
+					});
+
+				
+					//스크롤 시 글자 형광펜 효과
+					$(window).scroll(function(){
+						var scrollTop = $(window).scrollTop(); 
+
+						if( scrollTop >= $("#sec01").offset().top - $(window).height()/2){
+							$("#sec01 .sc01_tit_line").addClass("show");
+						}; 
+
+						if ( scrollTop >= $("#sec03").offset().top - $(window).height()/2){
+							$("#sec03 .sc03_tit_line").addClass("show");
+						};
+					});
+			});
+		</script>
+
+
+		<section id="sec02">
+			<div class="s_center">
+				<h4 class="fam_lato f42 txt_c">How Do We Work?</h4>
+				<div class="sc02_lst_wrap">
+					<div class="sc02_lst clearfix">
+						<div class="fl" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="800">
+							<div class="sc02_p_wrap">
+								<img src="./images/bnr_img01.jpg" alt="pic">
+							</div>
+							<div class="sc02_lst_txt clearfix">
+								<div class="sc02_num fl">
+									<span class="fam_lato bei_02 f102">01</span>
+								</div>
+								<div class="sc02_lst_txt_s fl">
+									<p class="brlk f24">여러분이 원하는 스타일을 분석하기 위해</p>
+									<p class="dot_wrap p_r fam_one_tit blu_01 f32">스타일퀴즈를 시작합니다</p>
+								</div>
+							</div>
+						</div>
+						<div class="fr" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400">
+							<div class="sc02_p_wrap">
+								<img src="./images/bnr_img02.jpg" alt="pic">
+							</div>
+							<div class="sc02_lst_txt clearfix">
+								<div class="sc02_num fl">
+									<span class="fam_lato bei_02 f102">02</span>
+								</div>
+								<div class="sc02_lst_txt_s  fl">
+									<p class="brlk f24">전문 스타일리스트가</p>
+									<p class="dot_wrap p_r fam_one_tit blu_01 f32">여러분의 스타일을 분석합니다</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sc02_lst clearfix">
+						<div class="fl" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="800">
+							<div class="sc02_p_wrap">
+								<img src="./images/bnr_img03a.jpg" alt="pic">
+							</div>
+							<div class="sc02_lst_txt clearfix">
+								<div class="sc02_num fl">
+									<span class="fam_lato bei_02 f102">03</span>
+								</div>
+								<div class="sc02_lst_txt_s  fl">
+									<p class="brlk f24">총 5벌이 들어있는</p>
+									<p class="dot_wrap p_r fam_one_tit blu_01 f32">Style7 박스를 받을 수 있습니다</p>
+								</div>
+							</div>
+						</div>
+						<div class="fr" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400">
+							<div class="sc02_p_wrap">
+								<img src="./images/bnr_img04.jpg" alt="pic">
+							</div>
+							<div class="sc02_lst_txt clearfix">
+								<div class="sc02_num fl">
+									<span class="fam_lato bei_02 f102">04</span>
+								</div>
+								<div class="sc02_lst_txt_s  fl">
+									<p class="brlk f24">추천된 옷을 직접 보시고</p>
+									<p class="dot_wrap p_r fam_one_tit blu_01 f32">구매 및 반품합니다</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="sec03">
+			<div class="s_center p_r">
+				<div class="sc03_tit_line"></div>
+				<p class="sc03_tit fam_one_tit f48 txt_c">스타일링비 <span class="fam_one_tit f60">7,700</span>원<span class="fam_one_tit f60">?</span></p>
+				<div class="sc03_ct_bx">
+					<p class="wt f32">5만원 이상 구매시</p>
+					<span class="dp_b wt f38">"스타일링비 7,700원 차감"</span>
+				</div>
+				<p class="sc03_p blu_01 fam_one_tit  f36 txt_c">원할 때 마다 언제든지 <span class="brn fam_one_tit">서비스를 받아보세요.</span></p>
+
+				<img class="sc03_co_left" src="./images/coin_left.png" alt="coin" data-aos="fade-down" data-aos-easing="ease-in-out-back" data-aos-duration="800" data-aos-delay="400">
+				<img class="sc03_co_right" src="./images/coin_right.png" alt="coin" data-aos="fade-down" data-aos-easing="ease-in-out-back" data-aos-duration="800">
+			</div>
+		</section>
+
+
+		<section id="sec04">
+			<div class="s_center">
+				<h4 class="fam_lato f42 txt_c">FAQ</h4>
+				<div id="columns">
+
+					<figure data-aos="fade-up" data-aos-duration="600">
+						<div class="lst_s_top clearfix">
+							<span class="lst_s_top_tit f22">타이틀입니다</span>
+						</div>
+						<div class="lst_s_bot">
+							<p class="f18">타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다.</p>
+						</div>
+					</figure>
+					
+					<figure data-aos="fade-up" data-aos-duration="600">
+						<div class="lst_s_top clearfix">
+							<span class="lst_s_top_tit f22">타이틀입니다</span>
+						</div>
+						<div class="lst_s_bot">
+							<p class="f18">타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다.</p>
+						</div>
+					</figure>
+					
+					<figure data-aos="fade-up" data-aos-duration="600">
+						<div class="lst_s_top clearfix">
+							<span class="lst_s_top_tit f22">타이틀입니다</span>
+						</div>
+						<div class="lst_s_bot">
+							<p class="f18">타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다. 타이틀내용입니다.</p>
+						</div>
+					</figure>
+
+				</div>
+			
+				<div class="sc05_more_btn faq_"><a class="wt f20 txt_c dp_b m80" href="/sub02/sub01.php" title="">FAQ 더보기</a></div>
+			</div>
+		</section>
+
+		<section id="sec05">
+			<div class="s_center">
+				<h4 class="bold f42 txt_c">생생한 고객님의 리뷰</h4>
+				<div class="sc05_slick_wrap">
+					<div class="sc05_slick clearfix">
+						<div class="sc05_box">
+							<img src="/images/user_man.png" alt="profile">
+			
+							<p>리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다.<br></p>
+							<div class="star_wrap">
+								<span class="f18 fam_one_tit">타이틀입니다</span>
+								<div class="star_05">
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+								</div>
+							</div>
+						</div>
+						<div class="sc05_box">
+							<img src="/images/user_woman.png" alt="profile">
+			
+							<p>리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다.<br></p>
+							<div class="star_wrap">
+								<span class="f18 fam_one_tit">타이틀입니다</span>
+								<div class="star_05">
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+								</div>
+							</div>
+						</div>
+						<div class="sc05_box">
+							<img src="/images/user_man.png" alt="profile">
+			
+							<p>리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다.<br></p>
+							<div class="star_wrap">
+								<span class="f18 fam_one_tit">타이틀입니다</span>
+								<div class="star_05">
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+								</div>
+							</div>
+						</div>
+						<div class="sc05_box">
+							<img src="/images/user_man.png" alt="profile">
+			
+							<p>리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다.<br></p>
+							<div class="star_wrap">
+								<span class="f18 fam_one_tit">타이틀입니다</span>
+								<div class="star_05">
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+								</div>
+							</div>
+						</div>
+						<div class="sc05_box">
+							<img src="/images/user_woman.png" alt="profile">
+			
+							<p>리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다.<br></p>
+							<div class="star_wrap">
+								<span class="f18 fam_one_tit">타이틀입니다</span>
+								<div class="star_05">
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+								</div>
+							</div>
+						</div>
+						<div class="sc05_box">
+							<img src="/images/user_man.png" alt="profile">
+			
+							<p>리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다. 리뷰입니다.<br></p>
+							<div class="star_wrap">
+								<span class="f18 fam_one_tit">타이틀입니다</span>
+								<div class="star_05">
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+									<div><img src="/images/star.png" alt="star"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="sc05_more_btn"><a class="wt f20 txt_c dp_b" href="/sub03/sub01.php" title="">더 많은 리뷰 보기</a></div>
+			</div>
+			
+			
+			<script>
+				//section05 slick
+				$('.sc05_slick').slick({
+					dots: false,
+					arrows:true,
+					infinite: true,
+					speed: 300,
+					slidesToShow: 4,
+					adaptiveHeight : !0,
+				
+					responsive: [ 
+						{ breakpoint: 1280, // 화면의 넓이가 1280px 이상일 때 
+							settings: { 
+							slidesToShow: 2, 
+							slidesToScroll: 1,
+							variableWidth:false,
+							adaptiveHeight: false,
+						}}, 
+						{ breakpoint: 800, // 화면의 넓이가 768px 이상일 때 
+							settings: { 
+							slidesToShow: 1, 
+							slidesToScroll: 1,
+							variableWidth:false,
+							adaptiveHeight: false,
+						} 
+						} 
+					]
+				});
+			</script>
+		</section>
+
+		<section id="sec06">
+			<div class="s_center">
+				<h4 class="f42 txt_c fam_one_tit normal">여러분의 스타일을 제안해드립니다.</h4>
+				<div class="sc06_cir_wrap clearfix">
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="east-in-out" data-aos-duration="600">
+						<div class="sc06_txt_bx">
+							<img src="./images/icon01.png" alt="icon">
+							<p class="cir_tit fam_lato blu_01 f18">STYLE QUIZ</p>
+							<p class="cir_det">스타일퀴즈를 진행해주세요<br>
+								여러분의 스타일을<br>
+								제안해드립니다.
+							</p>
+						</div>
+					</div>
+					<div class="arrow_wrap fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="300"><img class="dp_b" src="./images/thin_arr.png"></div>
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="350">
+						<div class="sc06_txt_bx">
+							<img src="./images/icon02.png" alt="icon">
+							<p class="cir_tit fam_one_tit blu_01 f18">회원가입 및 결제</p>
+							<p class="cir_det">회원가입 및 스타일링비<br>
+								선결제를 진행해주세요.
+							</p>
+						</div>
+					</div>
+					<div class="arrow_wrap fl arrow_respon" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="400"><img class="dp_b" src="./images/thin_arr.png"></div>
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="450">
+						<div class="sc06_txt_bx">
+							<img src="./images/icon03.png" alt="icon">
+							<p class="cir_tit fam_one_tit blu_01 f18">상품발송</p>
+							<p class="cir_det">7~8일후<br>
+								상품을 발송해드립니다.
+							</p>
+						</div>
+					</div>
+					<div class="arrow_wrap fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="500"><img class="dp_b" src="./images/thin_arr.png"></div>
+					<div class="sc06_cir fl" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="600" data-aos-delay="550">
+						<div class="sc06_txt_bx">
+							<img src="./images/icon04.png" alt="icon">
+							<p class="cir_tit fam_one_tit blu_01 f18">구매진행 및 반품</p>
+							<p class="cir_det">마이페이지에서 구매진행해주시고,<br>
+								마음에 들지 않는 옷은<br>
+								반품해주세요.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="f_center">
+				<div class="f_top clearfix">
+					<ul class="f_nav clearfix">
+						<li class="fam_one_tit">
+							Style 7
+							<ul class="f_nav_depth2">
+								<li class="f14"><a href="/sub01/sub01.php">서비스 소개</a></li>
+							</ul>
+						</li>
+						<li class="fam_one_tit">
+							고객 지원
+							<ul class="f_nav_depth2">
+								<li class="f14"><a href="/sub02/sub01.php">자주하는 질문</a></li>
+								<li class="f14"><a href="/sub03/sub01.php">고객 리뷰</a></li>
+							</ul>
+						</li>
+						<li class="fam_one_tit">
+							제휴 문의
+							<ul class="f_nav_depth2">
+								<li class="f14"><a href="/sub04/sub01.php">제휴 문의</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="f_sns clearfix">
+						<li><a href="https://www.instagram.com/style7_styling_service/" target="_blank"><img src="./images/sns_instagram.png"></a></li>
+						<!--<li><a href="#"><img src="./images/sns_facebook.png"></a></li>-->
+						<li><a href="https://www.youtube.com/channel/UC4QXqPYLeMwCqJyxMECpjMw" target="_blank"><img src="./images/sns_youtube.png"></a></li>
+					</ul>
+				</div>
+				<div class="f_bot">
+					<ul class="use_info">
+						<li class="f14"><a href="/member/policy01.php">개인정보처리방침</a></li>	
+						<li class="f14"><a href="/member/use01.php">이용약관</a></li>			
+					</ul>
+					<div class="com_info_wrap">
+						<span>(주)콘텐츠뱅크</span>
+						<span>대표: 장경임</span>
+						<span>사업자등록번호: 207-81-58418</span>
+						<span>통신판매번호: 2021-서울성동-02687호</span>
+						<br>
+						<span class="f_span_05">서울시 성동구 아차산로7길 15-1,<br>3층 3011호 (성수동2가, 효정빌딩)</span>
+						<span>E-mail: biz@contentsbank.co.kr</span>
+					</div>
+					<p class="copyright f14">COPYRIGHT(C) 2021 콘텐츠뱅크 ALL RIGHT RESERVED. <a href="https://i-web.kr/" target="_blank" style="opacity:0.5;">&nbsp; Design By. i-web</a></p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
