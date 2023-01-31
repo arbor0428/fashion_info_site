@@ -333,17 +333,60 @@
 					</div>
 
 					<div class="order_history">
-					<?
-						//스타일링 결제 내역
-						include 'myPayList.php';
-					?>
+						<h3>나의 결제 내역</h3>
+						<div class="row_tit">
+							<div class="col">번호</div>
+							<div class="col">결제일</div>
+							<div class="col">결제방식</div>
+							<div class="col">결제금액</div>
+							<div class="col">영수증</div>
+							<div class="col">내용</div>
+						</div>
+
+						<div class="row_con">
+							<div class="col">1</div>
+							<div class="col"><?=date('Y-m-d',$row['rTime'])?></div>
+							<div class="col"><?=$payMode?></div>
+							<div class="col"><?=number_format($row['payAmt'])?> 원</div>
+							<div class="col"><?=$billUrl?></div>
+							<div class="col"><?=$payTitle?></div>
+						</div>
 					</div>
 
 					<div class="my_order_list">
-					<?
-						//주문내역
-						include 'myOrderList.php';
-					?>
+						<h3>나의 상품주문 내역 <span class="m12 red_01 od_txt">※ 주문번호를 클릭하여 반품 및 결제를 진행해 주세요! </span></h3>
+						<div class="row_con_wrap">
+							<div class="row_con">
+								<div class="col">
+									<p class="col_tit">주문번호</p>
+									<p><a class="order_nm" href=""></a> <span style='color:#ff0000;'>환불</span></p>
+								</div>
+								<div class="col">
+									<p class="col_tit">주문일</p>
+									<p></p>
+								</div>
+								<div class="col">
+									<p class="col_tit">상품수</p>
+									<p></p>
+								</div>
+								<div class="col price">
+									<p class="col_tit">주문금액</p>
+									<p>0 원</p>
+								</div>
+								<div class="col">
+									<p class="col_tit">입금액</p>
+									<p>0 원</p>
+								</div>
+								<div class="col">
+									<p class="col_tit">상태</p>
+									<p>환불</p>
+								
+								</div>
+								<div class="col">
+									<p class="col_tit">리뷰작성</p>
+										<p><a class="cart-review-btn" href=""><span class="lnr lnr-pencil"></span></a></p>
+								</div>
+							</div>
 					</div>
 
 					<div class="button_area02 txt_c m66">

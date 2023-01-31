@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -81,7 +80,7 @@
 					}
 		
 					nav.find('ul li a').mouseover(function(e) {
-					//e.preventDefault();
+					  //e.preventDefault();
 					if(!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
 						
 						nav.addClass('animate');
@@ -232,9 +231,9 @@
 
 				var flag = true;
 				$(".m-btn").click(function(event){
-
+	
 					event.preventDefault();
-
+	
 					if(flag){
 						$(".m_header").addClass("openFull");
 						flag= false;
@@ -260,38 +259,81 @@
 				});
 		
 		</script>
-
-		<style>
-		.join-typeBtn {display:block; width:100%; height:65px; line-height:65px; margin:18px 0; background:#1a3c93; color:#fff; border-radius:12px; font-size:1.250rem;}
-		.join-typeBtn.kakao {background:url("../images/common/kakao_sync_large_narrow.png")no-repeat center center #FEE500; background-size:contain;}
-
-		@media screen and (max-width:768px){
-		.join-typeBtn {height:55px; line-height:55px;}
-		}
-		</style>
 		<div class="content_box">
 			<div class="inr">
 
 			<div class="center sub">
-				<div class="logins member-cont">
-					<div class="input-area clearfix" >
-						<h2 class="m_50">SIGN UP
-							<p>회원가입</p>
-						</h2>
-						<div class='login-wraps txt_c'>
-							<p class="f32 bold m_28">오직 나만을 위한 스타일링 서비스</p>
-							<p class="gry m_80 lh15">스타일퀴즈를 마치셨다면<br>회원가입 후 스타일링 서비스를 받아보세요!</p>
 
-							<a href=""  class="join-typeBtn kakao"></a>
-							<a href="./join1.html" class="join-typeBtn">일반 회원가입</a>
+					<div class="logins member-cont">
+						<div class="input-area clearfix" >
+							<p class="member-title m_66">비밀번호 찾기</p>
+
+							<div class='login-wraps clearfix'>
+								<div class="box">
+									<label class="field" style="padding:0; margin:0;">
+										<span class="insert">
+											<input class="input_text medium" style="margin:0 0 30px 0; ime-mode:disabled;" name="f_userid" type="text" value="" placeholder='아이디' onkeypress="if(event.keyCode==13){searchPWD();}">
+										</span>
+									</label>
+									<label class="field" style="padding:0; margin:0;">
+										<span class="insert">
+											<input class="input_text medium" style="margin:0 0 30px 0; ime-mode:disabled;" name="f_name" type="text" value="" placeholder='이름' onkeypress="if(event.keyCode==13){searchPWD();}">
+										</span>
+									</label>
+									<label class="field" style="padding:0; margin:0;">
+										<span class="insert">
+											<input class="input_text medium pw_ip" style='margin-top:0;' name="f_phone" type="text" value="" placeholder='연락처' onkeypress="if(event.keyCode==13){searchPWD();}">
+										</span>
+									</label>
+								</div>
+								<a href="javascript:searchPWD();" class="member-login-btn">확인</a>
+								
+								<div class="box txt_c">
+									<a href='./search_id.html' class="member-btn">아이디를 잊으셨습니까?</a>
+								<!--
+									<a href='./join1.php' class="member-btn">회원가입 하시겠습니까?</a>
+								-->
+								</div>
+							</div>
 						</div>
-
-
 					</div>
 				</div>
+
 			</div>
 		</div>
-		</div>
+
+		<script>
+		function searchPWD(){
+			form = document.frm01;
+			if(isFrmEmptyModal(form.f_userid, "아이디를 입력해 주십시오."))	return;
+			if(isFrmEmptyModal(form.f_name, "이름을 입력해 주십시오."))	return;
+			if(isFrmEmptyModal(form.f_phone, "연락처를 입력해 주십시오."))	return;
+
+			id = setTimeout(function(){
+				var params = jQuery("#frm01").serialize();
+				jQuery.ajax({
+					url: '../module/searchPWD.php',
+					type: 'POST',
+					data:params,
+					dataType: 'html',
+					success: function(result){
+						if(result == 'ok'){
+							GblMsgBox('회원님의 이메일로 신규 비밀번호가 발급되었습니다.',"location.href='/';");
+							return;
+
+						}else{
+							GblMsgBox('입력하신 정보와 일치하는 회원 정보가 없습니다.','');
+							return;
+						}
+					},
+					error: function(error){
+						GblMsgBox('전송오류');
+						return;
+					}
+				});
+			}, 100);
+		}
+		</script>
 
 		<section id="sec06">
 			<div class="s_center">
@@ -392,4 +434,3 @@
 		</footer>
 	</body>
 </html>
-

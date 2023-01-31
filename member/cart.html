@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -81,7 +80,7 @@
 					}
 		
 					nav.find('ul li a').mouseover(function(e) {
-					//e.preventDefault();
+					  //e.preventDefault();
 					if(!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
 						
 						nav.addClass('animate');
@@ -232,9 +231,9 @@
 
 				var flag = true;
 				$(".m-btn").click(function(event){
-
+	
 					event.preventDefault();
-
+	
 					if(flag){
 						$(".m_header").addClass("openFull");
 						flag= false;
@@ -260,39 +259,85 @@
 				});
 		
 		</script>
-
-		<style>
-		.join-typeBtn {display:block; width:100%; height:65px; line-height:65px; margin:18px 0; background:#1a3c93; color:#fff; border-radius:12px; font-size:1.250rem;}
-		.join-typeBtn.kakao {background:url("../images/common/kakao_sync_large_narrow.png")no-repeat center center #FEE500; background-size:contain;}
-
-		@media screen and (max-width:768px){
-		.join-typeBtn {height:55px; line-height:55px;}
-		}
-		</style>
 		<div class="content_box">
 			<div class="inr">
-
-			<div class="center sub">
-				<div class="logins member-cont">
-					<div class="input-area clearfix" >
-						<h2 class="m_50">SIGN UP
-							<p>회원가입</p>
-						</h2>
-						<div class='login-wraps txt_c'>
-							<p class="f32 bold m_28">오직 나만을 위한 스타일링 서비스</p>
-							<p class="gry m_80 lh15">스타일퀴즈를 마치셨다면<br>회원가입 후 스타일링 서비스를 받아보세요!</p>
-
-							<a href=""  class="join-typeBtn kakao"></a>
-							<a href="./join1.html" class="join-typeBtn">일반 회원가입</a>
+				<div class="cart_list">
+					<p class="order_nm">주문번호 000000000</p>
+					<p class="m12 m_12 red_01">※ 왼쪽 네모칸을 클릭하여 “결제하기/반품하기”를 선택해 주세요!</p>
+					<div class="row_tit">
+						<div class="col">-</div>
+						<div class="col">상품/상세정보</div>
+						<div class="col">주문금액</div>
+						<div class="col">상태</div>
+					</div>
+					<div class="row_con" style="border-bottom:1px solid #ddd;">
+						<div class="col">
+							<input type="checkbox" name="chk[]" class='chkList' value="">
 						</div>
+						<div class="col">
+							<img src="/upfile/no_img.png">
+							<div class="text_bx">
+								<p>상품</p>
+								<p>상품 메모</p>
+							</div>
+						</div>
+						<div class="col line100">0 원</div>
+						<div class="col line100 ">
+							결제완료				
+						</div>				
+					</div>
+					
+				<!-- 제품별 리뷰 작성이 아닌 주문별 주문 작성으로 인해 해당 기능 사용안함
+					<div class="cart-review">
+						<?
+							if($v['status'] == '결제완료'){
+								//리뷰작성 여부
+								$revieChk = sqlRowOne("select count(*) from ks_review where userid='".$GBL_USERID."' and orderNum='".$ord['rTime']."' and pid='".$v['pid']."'");
+								if(!$revieChk){
+						?>
+						<a class="cart-review-btn" href="review.php?uid=<?=$v['uid']?>">리뷰작성</a>
+						<?
+								}
+							}
+						?>
+					</div>
+				-->
+					
+				</div>
+				<div class="delivery_list">
+					<p class="order_nm m50">배송정보</p>
+					<div class="row_tit">
+						<div class="col">택배사</div>
+						<div class="col">운송장번호</div>
+					</div>
+					<div class="row_con">
+						<div class="col">롯데택배</div>
+						<div class="col"><a href="">000-000-0000</a></div>
+					</div>
+				</div>
+			<?
+				}
+			?>
+
+				<div class="cart_list">
+					<div class="button_area02 txt_c m66">
+						<a href="./mypage.html" class="bts wht-bt">목록</a> <!--목록으로 돌아가기 버튼 추가 20220304-->
+
+						<a href="javascript:returnChk();" class="bts">반품하기</a>
+						
+						<a href="javascript:orderChk();" class="bts blu-bt">반품없음</a>
+						
+						<a href="javascript:orderChk();" class="bts blu-bt">주문하기</a>
+						
+					</div>
 
 
+					<div class="button_area02 txt_c m66">
+						<a href="./mypage.html" class="bts">마이페이지</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-
 		<section id="sec06">
 			<div class="s_center">
 				<h4 class="f42 txt_c fam_one_tit normal">여러분의 스타일을 제안해드립니다.</h4>
@@ -392,4 +437,3 @@
 		</footer>
 	</body>
 </html>
-

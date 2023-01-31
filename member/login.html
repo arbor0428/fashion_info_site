@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -81,7 +80,7 @@
 					}
 		
 					nav.find('ul li a').mouseover(function(e) {
-					//e.preventDefault();
+					  //e.preventDefault();
 					if(!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
 						
 						nav.addClass('animate');
@@ -232,9 +231,9 @@
 
 				var flag = true;
 				$(".m-btn").click(function(event){
-
+	
 					event.preventDefault();
-
+	
 					if(flag){
 						$(".m_header").addClass("openFull");
 						flag= false;
@@ -260,37 +259,78 @@
 				});
 		
 		</script>
-
-		<style>
-		.join-typeBtn {display:block; width:100%; height:65px; line-height:65px; margin:18px 0; background:#1a3c93; color:#fff; border-radius:12px; font-size:1.250rem;}
-		.join-typeBtn.kakao {background:url("../images/common/kakao_sync_large_narrow.png")no-repeat center center #FEE500; background-size:contain;}
-
-		@media screen and (max-width:768px){
-		.join-typeBtn {height:55px; line-height:55px;}
-		}
-		</style>
 		<div class="content_box">
 			<div class="inr">
+				<div class="center sub">
+					<div class="logins member-cont">
+						<div class="input-area clearfix" >
+							<h2>LOGIN
+								<p>로그인</p>
+							</h2>
+							<div class='login-wraps clearfix'>
+								<div class='login-btn-wrap clearfix'>
+									<div class="login-btn">
+										<div class="squared">
+											<input type="checkbox" checked onclick="return false" class="cb20">
+										</div>
+										<label for="squared2"><p style="margin-left:5px;">보안로그인</p></label>
+									</div>
+							
+									<div class="login-btn">
+										<div class="squared">
+											<input type="checkbox" value="" id="isSave" name="isSave"  class="cb20">
+										</div>
+										<label for="isSave"><p style="margin-left:5px;">아이디 저장</p></label>
+									</div>
+								</div>
+							
+								
+								<div class="box">
+									<label class="field" style="padding:0; margin:0;">
+										<span class="insert">
+											<input type="text" name="userid" id="userid" class="input_text medium" style="margin:0 0 30px 0; ime-mode:disabled;" placeholder="아이디" onkeypress="if(event.keyCode==13){login_check();}" autocomplete="off">
+										</span>
+									</label>
+									<label class="field" style="padding:0; margin:0;">
+										<span class="insert">
+											<input type="password" name="passwd" id="passwd" class="input_text medium" style="margin-top:0;" placeholder='비밀번호' onkeypress="if(event.keyCode==13){login_check();}" autocomplete="off">
+										</span>
+									</label>
+								</div>
+							
+								<div class="box txt_c">
+									<a href="./search_id.html" class="member-btn">아이디를 잊으셨습니까?</a>
+									<a href="./search_pw.html" class="member-btn">비밀번호를 잊으셨습니까?</a>
+								</div>
+							
+							<!--
+								<div class="etc_way_box">
+									<a class="w_box kakao_btn" title="카카오톡으로 시작하기">
+										<img src="/images/kakao-talk.png">
+										<span>카카오톡 시작하기</span>
+									</a>
+									<a class="w_box mail_btn" title="메일로 시작하기">
+										<img src="/images/gmail.png">
+										<span>이메일로 시작하기</span>
+									</a>
+								</div>
+							-->
+							
+							
+								<a href="javascript:login_check();" class="member-login-btn">로그인</a>
+							
+							</div>
 
-			<div class="center sub">
-				<div class="logins member-cont">
-					<div class="input-area clearfix" >
-						<h2 class="m_50">SIGN UP
-							<p>회원가입</p>
-						</h2>
-						<div class='login-wraps txt_c'>
-							<p class="f32 bold m_28">오직 나만을 위한 스타일링 서비스</p>
-							<p class="gry m_80 lh15">스타일퀴즈를 마치셨다면<br>회원가입 후 스타일링 서비스를 받아보세요!</p>
+							<!-- 카카오 로그인 -->
+							<div class='login-wraps m_50'>
+								<a href='<?=$kakaoLoginUrl?>' class="member-login-btn kakao"></a>
+							</div>
+							<!-- /카카오 로그인 -->
 
-							<a href=""  class="join-typeBtn kakao"></a>
-							<a href="./join1.html" class="join-typeBtn">일반 회원가입</a>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 
 		<section id="sec06">
@@ -392,4 +432,3 @@
 		</footer>
 	</body>
 </html>
-
